@@ -34,7 +34,7 @@ class QuestionAdmin(admin.ModelAdmin):
     search_fields = ['question_text']
 
 class ChoiceAdmin(admin.ModelAdmin):
-    list_display = ['question','choice_text', 'is_correct']
+    list_display = ['choice_text', 'is_correct']
 
 
 # <HINT> Register Question and Choice models here
