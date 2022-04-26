@@ -25,7 +25,7 @@
                     {% csrf_token %}
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Username" name="username" >
-                        <input type="password" class="form-control" placeholder="Username" name="psw" >
+                        <input type="password" class="form-control" placeholder="Password" name="psw" >
                         <button class="btn btn-primary" type="submit">Login</button>
                         <a class="btn btn-link" href="{% url 'onlinecourse:registration' %}">Sign Up</a>
                     </div>
@@ -61,13 +61,13 @@
                     <div class="form-check">
                         {% if choice.id in selected %}
                             {% if choice.is_correct == True %}
-                                <label style="color:#2ea94a;font-weight:bold">Correct answer: {{choice.choice_text}}</label>
+                                <div class="alert alert-success">Correct answer: {{choice.choice_text}}</div>
                             {% else %}
-                                <label style="color:red;font-weight:bold">Wrong answer: {{choice.choice_text}}</label>
+                                <div class="alert alert-danger">Wrong answer: {{choice.choice_text}}</div>
                             {% endif %}
                         {% else %}
                             {% if choice.is_correct == True %}
-                                <label style="color:#DEC21F;font-weight:bold">Not selected: {{choice.choice_text}}</label>
+                                <div class="alert alert-success">Not selected: {{choice.choice_text}}</div>
                             {% else %}
                                 <label>{{choice.choice_text}}</label>
                             {% endif %}
