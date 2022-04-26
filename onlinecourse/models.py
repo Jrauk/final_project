@@ -62,7 +62,6 @@ class Course(models.Model):
     users = models.ManyToManyField(settings.AUTH_USER_MODEL, through='Enrollment')
     total_enrollment = models.IntegerField(default=0)
     is_enrolled = False
-    questions = models.ManytoManyField(Question, through='Lesson')
 
     def __str__(self):
         return "Name: " + self.name + "," + \
@@ -123,7 +122,6 @@ class Question(models.Model):
         else:
             return False
 
-
 #  <HINT> Create a Choice Model with:
     # Used to persist choice content for a question
     # One-To-Many (or Many-To-Many if you want to reuse choices) relationship with Question
@@ -134,9 +132,6 @@ class Choice(models.Model):
     question_id = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='choices')
     choice_text = models.CharField(max_length=255, null=False, default='Answer')
     is_correct = models.BooleanField()
-    
-    def __str__(self):
-        return self.choice_text
 
 # <HINT> The submission model
 # One enrollment could have multiple submission
