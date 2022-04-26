@@ -17,14 +17,14 @@ class ChoiceInline(admin.StackedInline):
 
 # Register your models here.
 class CourseAdmin(admin.ModelAdmin):
-    inlines = [LessonInline]
+    inlines = [LessonInline, QuestionInLine, ChoiceInLine]
     list_display = ('name', 'pub_date')
     list_filter = ['pub_date']
     search_fields = ['name', 'description']
 
 class LessonAdmin(admin.ModelAdmin):
-    inlines = [QuestionInline]
-    list_display = ['title', 'course']
+    inlines = [QuestionInline, ChoiceInLine]
+    list_display = ['title', 'course', 'questions']
 
 
 class QuestionAdmin(admin.ModelAdmin):
