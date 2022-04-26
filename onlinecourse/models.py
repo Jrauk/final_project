@@ -62,6 +62,7 @@ class Course(models.Model):
     users = models.ManyToManyField(settings.AUTH_USER_MODEL, through='Enrollment')
     total_enrollment = models.IntegerField(default=0)
     is_enrolled = False
+    questions = models.ManytoManyField(Question, through='Lesson')
 
     def __str__(self):
         return "Name: " + self.name + "," + \
@@ -74,7 +75,11 @@ class Lesson(models.Model):
     order = models.IntegerField(default=0)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     content = models.TextField(default='Course description')
-
+    
+    def __str__(self):
+        return "Title: " + self.title + "," + /
+               "Content:" + self.content
+    
 
 # Enrollment model
 # <HINT> Once a user enrolled a class, an enrollment entry should be created between the user and course
@@ -93,6 +98,8 @@ class Enrollment(models.Model):
     date_enrolled = models.DateField(default=now)
     mode = models.CharField(max_length=5, choices=COURSE_MODES, default=AUDIT)
     rating = models.FloatField(default=5.0)
+    def __str__(self):
+        return self.user + " " + self.course
 
 
 # <HINT> Create a Question Model with:
@@ -126,6 +133,9 @@ class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='choices')
     choice_text = models.CharField(max_length=255, default='Answer')
     is_correct = models.BooleanField()
+    
+    def __str__(self):
+        return self.choice_text
 
 # <HINT> The submission model
 # One enrollment could have multiple submission
