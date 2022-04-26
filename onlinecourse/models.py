@@ -93,8 +93,6 @@ class Enrollment(models.Model):
     date_enrolled = models.DateField(default=now)
     mode = models.CharField(max_length=5, choices=COURSE_MODES, default=AUDIT)
     rating = models.FloatField(default=5.0)
-    def __str__(self):
-        return self.user + " " + self.course
 
 
 # <HINT> Create a Question Model with:
@@ -125,7 +123,7 @@ class Question(models.Model):
     # Indicate if this choice of the question is a correct one or not
     # Other fields and methods you would like to design
 class Choice(models.Model):
-    question_id = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='choices')
+    choice_id = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='choices')
     choice_text = models.CharField(max_length=255, null=False, default='Answer')
     is_correct = models.BooleanField()
 
