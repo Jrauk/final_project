@@ -74,6 +74,8 @@ class Lesson(models.Model):
     order = models.IntegerField(default=0)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     content = models.TextField(default='Course description')
+    def __str__(self):
+        return self.title
     
 
 # Enrollment model
@@ -115,6 +117,9 @@ class Question(models.Model):
             return True
         else:
             return False
+        
+     def __str__(self):
+        return self.question_text
 
 #  <HINT> Create a Choice Model with:
     # Used to persist choice content for a question
@@ -126,6 +131,8 @@ class Choice(models.Model):
     question_id = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='choice')
     choice_text = models.CharField(max_length=255, null=False, default='Answer')
     is_correct = models.BooleanField()
+    def __str__(self):
+        return self.choice_text
 
 # <HINT> The submission model
 # One enrollment could have multiple submission
