@@ -61,13 +61,13 @@
                     <div class="form-check">
                         {% if choice.id in selected %}
                             {% if choice.is_correct == True %}
-                                <div class="alert alert-success">Correct answer: {{choice.choice_text}}</div>
+                            <p class="text-success">Correct answer: {{choice.choice_text}}</p>
                             {% else %}
-                                <div class="alert alert-danger">Wrong answer: {{choice.choice_text}}</div>
+                            <p class="text-danger">Wrong answer: {{choice.choice_text}}</p>
                             {% endif %}
                         {% else %}
                             {% if choice.is_correct == True %}
-                                <div class="alert alert-success">Not selected: {{choice.choice_text}}</div>
+                            <p class="text-warning">Not selected: {{choice.choice_text}}</p>
                             {% else %}
                                 <label>{{choice.choice_text}}</label>
                             {% endif %}
